@@ -1,0 +1,16 @@
+version: "2"
+sql:
+  - schema:
+      - "./db/migration/"        # Путь к файлам схемы базы данных
+    queries:
+      - "./db/query/"            # Путь к файлам с SQL-запросами
+    engine: "postgresql"          # Движок базы данных
+    gen:
+      go:
+        package: "db"             # Имя пакета для Go-кода
+        out: "./db/sqlc"          # Директория для сохранения сгенерированного кода
+        emit_json_tags: true      # Включает JSON-теги для полей структур
+        emit_prepared_queries: false # Выключает подготовленные запросы
+        emit_interface: false     # Не генерирует интерфейсы для методов запросов
+        emit_exact_table_names: true # Точная генерация имен таблиц (было "enit_extract_table_names" в версии 1)
+
